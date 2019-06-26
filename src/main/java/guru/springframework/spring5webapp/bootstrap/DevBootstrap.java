@@ -3,7 +3,7 @@ package guru.springframework.spring5webapp.bootstrap;
 import guru.springframework.spring5webapp.model.Author;
 import guru.springframework.spring5webapp.model.Book;
 import guru.springframework.spring5webapp.model.Publisher;
-import guru.springframework.spring5webapp.repositories.AuthoRepository;
+import guru.springframework.spring5webapp.repositories.AuthorRepository;
 import guru.springframework.spring5webapp.repositories.BookRepository;
 import guru.springframework.spring5webapp.repositories.PublisherRepository;
 import org.springframework.context.ApplicationListener;
@@ -13,12 +13,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class DevBootstrap  implements ApplicationListener<ContextRefreshedEvent> {
 
-    private AuthoRepository authoRepository;
+    private AuthorRepository authorRepository;
     private BookRepository  bookRepository;
     private PublisherRepository  publisherRepository;
 
-    public DevBootstrap(AuthoRepository authoRepository, BookRepository bookRepository, PublisherRepository publisherRepository) {
-        this.authoRepository = authoRepository;
+    public DevBootstrap(AuthorRepository authorRepository, BookRepository bookRepository, PublisherRepository publisherRepository) {
+        this.authorRepository = authorRepository;
         this.bookRepository = bookRepository;
         this.publisherRepository = publisherRepository;
     }
@@ -35,16 +35,16 @@ public class DevBootstrap  implements ApplicationListener<ContextRefreshedEvent>
         publisherRepository.save(pub);
 
         Author eric = new Author("Eric","Evans");
-        Book ddd = new Book( "Domain Drive designo","1234",pub);
+        Book ddd = new Book( "Domain Drive design","1234",pub);
         eric.getBooks().add(ddd);
         ddd.getAuthors().add(eric);
-        authoRepository.save(eric);
+        authorRepository.save(eric);
         bookRepository.save(ddd);
 
         Author rod = new Author("Rod","Johnson");
-        Book noEJB= new Book( "J2EE Deveolpment EJB","1345435234",pub);
+        Book noEJB= new Book( "J2EE Development EJB","1345435234",pub);
         rod.getBooks().add(noEJB);
-        authoRepository.save(rod);
+        authorRepository.save(rod);
         bookRepository.save(noEJB);
 
 
